@@ -3,15 +3,23 @@ import Card from "./Card";
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import App from "../../../App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCross, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-function BusinessCreate({ open, children }) {
+function BusinessCreate({ open, children, close }) {
   return ReactDOM.createPortal(
     <div
-      className={`w-full h-screen bg-blue-500 z-10 text-white flex justify-center items-center absolute top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/2 transition-transform duration-1000 ${
+      className={`w-full h-screen bg-white z-10 text-black flex absolute top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/2 transition-transform duration-1000 ${
         open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
       }`}
     >
-      <div className="w-full">{children}</div>
+      <div className="w-3/4 p-24">{children}</div>
+      <div className="w-1/4 flex flex-col justify-between bg-[#a3e5fd]">
+        <div></div>
+        <div className="">
+          <img src="/images/3.jpg" />
+        </div>
+      </div>
     </div>,
     document.getElementById("modal-root")
   );
@@ -30,8 +38,33 @@ function TemplatePointers() {
     <>
       <div className="w-full overflow-x-hidden ">
         <BusinessCreate open={open}>
+          <div className="flex gap-5 pb-16">
+            <div className="flex items-center">
+              {" "}
+              <FontAwesomeIcon
+                icon={faTimes}
+                className="text-[#041e49b3] text-[20px]"
+                onClick={() => setOpen(false)}
+              />
+            </div>
+            <h2 className="text-[22px] text-[#041e49b3] leading-[24px] ">
+              Create a project
+            </h2>
+          </div>
           <div>
-            <h2>Create Application</h2>
+            <h1 className="text-[#041e49] text-[43px] leading-[54px] mb-20 font-medium">
+              Let's start with a name for
+              <br /> your project{" "}
+            </h1>
+            <div className="w-[500px] mb-7">
+              <input
+                placeholder="Enter your project name"
+                className="w-full focus:outline-none border-b-2 placeholder:text-[28px] pt-3 placeholder:text-[#041e499e]"
+              />
+            </div>
+            <button className="py-5 px-10 bg-blue-500 text-white rounded-md">
+              Continue
+            </button>
           </div>
         </BusinessCreate>
         <div
